@@ -6,10 +6,21 @@ import { request } from 'http';
 import Utils from './Utils';
 import xml2js = require("xml2js");
 
+let mc_accessToken = require("mc_generic_methods");
+mc_accessToken()
+    .then((res: any) => {
+      // If the function successfully retrieves the data, it enters this block
+      console.log("Mc access token library check >>>>> ",res.body); // Print the contest data on the console
+    })
+    .catch((err: any) => {
+      console.log(err); // Error handler
+    });
+
 export default class SfmcApiHelper
 {
     // Instance variables
   private client_id="";
+   
   private client_secret="";
   // private _accessToken = "";
   private oauthAccessToken=""; 
@@ -86,6 +97,8 @@ export default class SfmcApiHelper
             });
         });
     }
+
+    
 
     public createSparkpostIntegrationFolder(
       req: express.Request,
